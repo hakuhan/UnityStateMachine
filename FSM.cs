@@ -23,7 +23,7 @@ public class FSM : MonoBehaviour {
 	}
 
 	/************************************************/
-	protected void SwichState(State newState)
+	protected void SwitchState(State newState)
 	{
 		// go to end state
 		m_currentState.End();

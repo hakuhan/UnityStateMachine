@@ -27,7 +27,7 @@ public class WeaponStateMachine : FSM {
 		m_defendState = new State("defend", Begin_Defend, Update_Defend, End_Defend);
 		m_pendingState = new State("pending", Begin_Pending, Update_Pending, End_Pending);
 
-		this.SwichState(m_pendingState);
+		this.SwitchState(m_pendingState);
 	}
 
 	/************************************************/	
@@ -79,7 +79,7 @@ public class WeaponStateMachine : FSM {
 		// check animate over
 		if (m_weaponCtr.IsDefendOver())
 		{
-			this.SwichState(m_pendingState);
+			this.SwitchState(m_pendingState);
 			return;
 		}
 	}
@@ -105,14 +105,14 @@ public class WeaponStateMachine : FSM {
 		// Turn to attack
 		if (m_weaponCtr.IsAttackPress())
 		{
-			this.SwichState(m_attackState);
+			this.SwitchState(m_attackState);
 			return;
 		}
 
 		// Turn to defend
 		if(m_weaponCtr.IsDefendPress())
 		{
-			this.SwichState(m_defendState);
+			this.SwitchState(m_defendState);
 			return;
 		}
 
