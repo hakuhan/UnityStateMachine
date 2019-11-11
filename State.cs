@@ -6,7 +6,7 @@ namespace GameCore
 {
 
     public delegate void StateEvent();
-    public class State
+    public class FSMState
     {
 
         protected string m_stateName;
@@ -17,14 +17,14 @@ namespace GameCore
 
         /************************************************/
 
-        public State()
+        public FSMState()
         {
 
         }
 
         /************************************************/
 
-        public State(string name, StateEvent beginE, StateEvent updateE, StateEvent endE)
+        public FSMState(string name, StateEvent beginE, StateEvent updateE, StateEvent endE)
         {
             this.m_stateName = name;
             this.m_beginEvent = beginE;
@@ -71,14 +71,14 @@ namespace GameCore
 
         /************************************************/
 
-        public static bool operator ==(State s1, State s2)
+        public static bool operator ==(FSMState s1, FSMState s2)
         {
             return s1.m_stateName == s2.m_stateName;
         }
 
         /************************************************/
 
-        public static bool operator !=(State s1, State s2)
+        public static bool operator !=(FSMState s1, FSMState s2)
         {
             return s1.m_stateName != s2.m_stateName;
         }

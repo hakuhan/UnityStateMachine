@@ -2,53 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameCore {
+namespace GameCore
+{
 
-public class FSM : MonoBehaviour {
+    public class FSM
+    {
+        protected FSMState m_currentState = new FSMState();
+        /************************************************/
 
-	protected State m_currentState = new State();
-	
-	/************************************************/
-	// Use this for initialization
-	protected void Start () {
-		
-	}
+        // Update is called once per frame
+        public void Update()
+        {
+            // Debug.Log("FSM update!");
+            m_currentState.Update();
+        }
 
-	/************************************************/
-	
-	// Update is called once per frame
-	protected void Update () {
-		// Debug.Log("FSM update!");
-		m_currentState.Update();
-	}
+        /************************************************/
+        public void SwitchState(FSMState newState)
+        {
+            // go to end state
+            m_currentState.End();
 
-	/************************************************/
-	protected void SwitchState(State newState)
-	{
-		// go to end state
-		m_currentState.End();
-		
-		m_currentState = newState;
+            m_currentState = newState;
 
-		// Turn to next begin state
-		m_currentState.Begin();
-	}
+            // Turn to next begin state
+            m_currentState.Begin();
+        }
 
-	/************************************************/
+        /************************************************/
 
-	public bool IsCurrentState(State state)
-	{
-		return state == m_currentState;
-	}	
+        public bool IsCurrentState(FSMState state)
+        {
+            return state == m_currentState;
+        }
 
-	/************************************************/
+        /************************************************/
 
-	public State GetCurrentState()
-	{
-		return m_currentState;
-	}
+        public FSMState GetCurrentState()
+        {
+            return m_currentState;
+        }
 
-	/************************************************/	
-}
+        /************************************************/
+    }
 
 }
