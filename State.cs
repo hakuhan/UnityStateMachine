@@ -22,8 +22,6 @@ namespace GameCore
 
         }
 
-        /************************************************/
-
         public FSMState(string name, StateEvent beginE, StateEvent updateE, StateEvent endE)
         {
             this.m_stateName = name;
@@ -42,7 +40,6 @@ namespace GameCore
             }
         }
 
-        /************************************************/
         public void Update()
         {
             if (m_updateEvent != null)
@@ -51,7 +48,6 @@ namespace GameCore
             }
         }
 
-        /************************************************/
         public void End()
         {
             if (m_endEvent != null)
@@ -69,21 +65,38 @@ namespace GameCore
             m_endEvent = null;
         }
 
-        /************************************************/
+        #region Override
 
         public static bool operator ==(FSMState s1, FSMState s2)
         {
             return s1.m_stateName == s2.m_stateName;
         }
 
-        /************************************************/
-
         public static bool operator !=(FSMState s1, FSMState s2)
         {
             return s1.m_stateName != s2.m_stateName;
         }
 
-        /************************************************/
+        public override bool Equals(object obj)
+        {
+            return obj is FSMState state &&
+                   m_stateName == state.m_stateName &&
+                   EqualityComparer<StateEvent>.Default.Equals(m_beginEvent, state.m_beginEvent) &&
+                   EqualityComparer<StateEvent>.Default.Equals(m_updateEvent, state.m_updateEvent) &&
+                   EqualityComparer<StateEvent>.Default.Equals(m_endEvent, state.m_endEvent);
+        }
+
+        public override int GetHashCode()
+        {
+            return m_stateName.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "State name is: " + m_stateName;
+        }
+
+        #endregion
 
     }
 }
