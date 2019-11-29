@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameCore
+namespace BaiFSM
 {
 
     public delegate void StateEvent();
